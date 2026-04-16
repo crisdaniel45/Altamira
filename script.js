@@ -11,15 +11,28 @@ const observer = new IntersectionObserver(
 
 document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
-const menuToggle = document.getElementById("menuToggle");
+const menuBtn = document.getElementById("menuBtn");
 const navLinks = document.getElementById("navLinks");
 
-if (menuToggle && navLinks) {
-  menuToggle.addEventListener("click", () => {
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener("click", () => {
     navLinks.classList.toggle("open");
   });
 
   navLinks.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => navLinks.classList.remove("open"));
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+    });
   });
 }
+
+window.addEventListener("scroll", () => {
+  const header = document.getElementById("header");
+  if (!header) return;
+
+  if (window.scrollY > 20) {
+    header.style.paddingTop = "8px";
+  } else {
+    header.style.paddingTop = "14px";
+  }
+});
